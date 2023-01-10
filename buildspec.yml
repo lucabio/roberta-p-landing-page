@@ -1,0 +1,16 @@
+version: 0.2
+
+env:
+  variables:
+    S3_BUCKET: "roberta-p-landing-page"
+    S3_REGION: "eu-central-1"
+
+phases:
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Copying files to S3 bucket...
+      - aws s3 sync . s3://$S3_BUCKET --region $S3_REGION --delete
+
+artifacts:
+  type: none
